@@ -1,0 +1,56 @@
+git 使用指南
+
+第一次使用git时注册
+  git config --global user.name  提交人
+  git config --global user.email  提交人邮箱
+  更改也是一样的
+  git config --list                 			|-->查看配置清单
+  
+  git init                                			|-->初始化仓库
+  git status                         		 	|-->查看文件状态
+  git log                              			|-->查看历史记录
+  git add  文件名(/*/.)               			|-->添加工作区某个文件 (或所有文件) 进入暂存区
+  git commit -m 提交说明   			|-->提交暂存区中的所有文件进入仓库
+  
+                      | master(分支名)              	 	|-->进入某一分支中
+  git checkout  文件名(暂存区中的)          		|-->使用暂存区的文件去替换工作区文件
+                                                                  		(撤销使用的操作)
+  git checkout .                			|-->放弃修改变动(如:删除了文件若已经提交到版本库即可恢复)
+  git checkout -- 文件名                                             |-->放弃某个文件的修改
+  git checkout -b a                			|-->创建一个a分支,并进入a分支
+  git checkout -B a				|-->强制创建一个a分支
+
+  git rm 文件名  并用 git commit -m "remove 文件名" |-->删除git中文件,后面是彻底删除
+  git rm --cached (暂存区的文件名)         		|-->移除暂存区中的某一文件 
+  git reset --hard (commit的号码)           		|-->返回到某次提交 (并删除该次后的所有提交)             
+  					      例:返回到第二次提交,从第三次提交开始删除,只留第一二次提交的文件
+
+  git clear                                              		|-->清空屏幕
+  git branch                                           		|-->查看分支
+  git branch 名字                                   		|-->创建一个分支
+  git merge 分支名1                               		|-->在当前分支上合并分支名1(并未删除该分支名1)
+  git branch -d 分支名	            		|-->删除分支
+  git branch -D 分支名	            		|-->强制删除分支
+  git stash         		            		|-->暂时保存  暂存区(add)的内容 用于切换分支时,不带走这个暂存区的内容进入那个分支的暂存区内
+  git stash pop				|-->切换回这个使用stash分支时,取出暂时保存的内容
+  git restore --staged 文件名 			|-->将文件从暂存区撤出，但不会撤销文件的更改
+  git resore 文件名				|-->将不在暂存区的文件撤销更改
+  
+
+
+  git push 远程仓库地址 分支名称(要推送的哪个)
+  git push 远程仓库地址别名 分支名称		|-->使用创建好的别名代替远程地址
+  git push -u远程 仓库地址别名 分支名称
+                -u 记住推送地址及分支  		|-->下次推送只需要输入git push 即可
+  git clone 远程仓库地址                           		|-->下载内容
+  git pull 远程仓库地址 分支  			|-->拉取(更新)分支内容,方便可以上传
+  git remote add 远程仓库地址别名 远程仓库地址        |-->给这个远程仓库地址创建一个别名
+  ssh-keygen                   			|-->创建密钥
+  
+
+  git |   退出那个编辑备注信息界面  先按esc  然后连按大写ZZ两次
+           
+           <合并不同的仓库(用于先pull远程仓库内容,但本地仓库已有内容待上传)使用命令
+              git pull 远程地址 分支名 --allow-unrelated-histories >
+           
+
